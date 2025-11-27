@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hackathon 2025 - SJC IT Dept</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+/* ===== GLOBAL ===== */
+body {
+    margin: 0;
+    font-family: Poppins, sans-serif;
+    background: #060606;
+    color: white;
+    scroll-behavior: smooth;
+}
+
+/* ===== MENU BUTTON ===== */
+.menu-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 300;
+}
+
+.menu-btn {
+    background: #101010;
+    color: white;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* ===== FULL RIGHT-SIDE SLIDING MENU ===== */
+.menu-box {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100%;
+    background: rgba(10, 10, 20, 0.97);
+    padding-top: 90px;
+    transition: 0.6s ease;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding-left: 30px;
+}
+
+.menu-box a {
+    font-size: 22px;
+    padding: 15px 0;
+    color: #bfc6ff;
+    text-decoration: none;
+}
+
+.menu-box a:hover {
+    color: #ffffff;
+    padding-left: 10px;
+    transition: 0.3s;
+}
+
+/* Apply slide-in animation */
+.show {
+    right: 0;
+}
+
+/* ===== HERO SECTION WITH 3D OBJECTS ===== */
+.hero {
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 3D Floating Cube */
+.floating-cube {
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(45deg, #6a5af9, #b08cff);
+    position: absolute;
+    left: 20%;
+    top: 30%;
+    transform: rotate(45deg);
+    animation: cubeFloat 6s infinite ease-in-out;
+    filter: blur(2px);
+}
+
+@keyframes cubeFloat {
+    0% { transform: translateY(0) rotate(45deg); }
+    50% { transform: translateY(-40px) rotate(60deg); }
+    100% { transform: translateY(0) rotate(45deg); }
+}
+
+/* 3D Glowing Sphere */
+.floating-sphere {
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, #ff6ad5, #aa00ff, #000);
+    border-radius: 50%;
+    position: absolute;
+    right: 10%;
+    top: 20%;
+    filter: blur(80px);
+    animation: sphereFloat 5s infinite ease-in-out;
+}
+
+@keyframes sphereFloat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+/* Hero Text */
+.title {
+    font-size: 55px;
+    font-weight: 900;
+    z-index: 10;
+}
+
+.subtitle {
+    z-index: 10;
+    font-size: 20px;
+}
+
+/* ===== SECTIONS ===== */
+section {
+    padding: 70px 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+section h2 {
+    font-size: 32px;
+    color: #8d9fff;
+    margin-bottom: 20px;
+}
+
+.section-box {
+    display: flex;
+    gap: 20px;
+    background: #111;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(140, 150, 255, 0.2);
+}
+
+.section-box img {
+    width: 250px;
+    border-radius: 10px;
+}
+/* GRID LAYOUT */
+.feature-grid {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 25px;
+    width: 100%;
+}
+
+/* FEATURE BOX */
+.feature-box {
+    background: linear-gradient(to bottom, #111, #1a1a2e);
+    border: 1px solid rgba(147, 51, 234, 0.4);
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    transition: 0.3s ease;
+    box-shadow: 0 0 15px rgba(147, 51, 234, 0.1);
+}
+
+/* ICONS */
+.feature-box svg {
+    height: 40px;
+    width: 40px;
+    margin: 0 auto 15px auto;
+    color: #bb86fc;
+}
+
+/* TEXT */
+.feature-box h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ddd;
+    margin-bottom: 8px;
+}
+
+.feature-box .value {
+    font-size: 26px;
+    font-weight: bold;
+    color: #bb86fc;
+}
+
+.feature-box .sub {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #aaa;
+}
+
+/* HOVER EFFECT */
+.feature-box:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 20px 35px rgba(147, 51, 234, 0.25);
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    padding: 40px;
+    background: #111;
+}
+
+footer a {
+    text-decoration: none;
+    color: #8ea2ff;
+}
+
+/* ===== FADE-IN ANIMATION ===== */
+.reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+.section-container {
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
+    transform-style: preserve-3d;
+}
+
+.section-container.active-pop {
+    transform: translateZ(80px) scale(1.05);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.25);
+}
+.menu-box a.active {
+    color: #00eaff;
+    font-weight: bold;
+    transform: scale(1.1);
+    transition: 0.3s ease;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .section-box {
+        flex-direction: column;
+        text-align: center;
+    }
+    .section-box img {
+        width: 100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🌟 MENU BUTTON -->
+<div class="menu-container">
+    <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
+
+    <div id="menu-box" class="menu-box">
+        <a href="#event" onclick="toggleMenu(); popSection('event')">Event Details</a>
+        <a href="#prizes" onclick="toggleMenu(); popSection('prizes')">Prizes & Recognition</a>
+        <a href="#rules" onclick="toggleMenu(); popSection('rules')">Rules & Guidelines</a>
+        <a href="#submission" onclick="toggleMenu(); popSection('submission')">Submission Guidelines</a>
+        <a href="#contact" onclick="toggleMenu(); popSection('contact')">Contact Information</a>
+        <a href="register.html" onclick="toggleMenu()">Registration</a>
+    </div>
+</div>
+
+<!-- 🌟 HERO SECTION -->
+<div class="hero">
+    <div class="floating-cube"></div>
+    <div class="floating-sphere"></div>
+
+    <h1 class="title">Hackathon 2025</h1>
+    <p class="subtitle">Department of Information Technology<br>St. Joseph's College (Autonomous)</p>
+</div>
+
+<!-- 🌟 EVENT SECTION -->
+<section id="event" class="reveal">
+    <h2>Event Details</h2>
+    <div class="section-box">
+        <img src="https://i.ibb.co/FXs8wn9/hackathon.jpg" alt="Event">
+        <p>A 24-hour coding and innovation challenge where participants build
+            real-world solutions. Create apps, AI tools, IoT systems, or anything innovative!</p>
+    </div>
+</section>
+<section id="event1">
+    <div class="section-container">
+
+        <h1>Event Details</h1>
+        <p>Join the ultimate Hackathon 2025 hosted by Department of IT, St. Joseph's College (Autonomous), Tiruchirappalli.</p>
+
+        <!-- EVENT FEATURE GRID -->
+        <div class="feature-grid">
+
+            <!-- DATE -->
+            <div class="feature-box">
+                <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 2v4"></path>
+                    <path d="M16 2v4"></path>
+                    <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                    <path d="M3 10h18"></path>
+                </svg>
+                <h3>Date</h3>
+                <p class="value">16th September</p>
+                <p class="sub">Starts 9:30 AM</p>
+            </div>
+
+            <!-- DURATION -->
+            <div class="feature-box">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512">
+                    <path d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120l0 136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2 280 120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"></path>
+                </svg>
+                <h3>Duration</h3>
+                <p class="value">6 Hours</p>
+                <p class="sub">Non-stop coding</p>
+            </div>
+
+            <!-- VENUE -->
+            <div class="feature-box">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24">
+                    <path fill="none"></path>
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM7 9c0-2.76 
+                    2.24-5 5-5s5 2.24 5 5c0 2.88-2.88 7.19-5 9.88C9.92 16.21 7 11.85 7 9z"></path>
+                    <circle cx="12" cy="9" r="2.5"></circle>
+                </svg>
+                <h3>Venue</h3>
+                <p class="value">College Campus</p>
+                <p class="sub">St. Joseph's College</p>
+            </div>
+
+            <!-- TEAM SIZE -->
+            <div class="feature-box">
+                <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <h3>Team Size</h3>
+                <p class="value">1-3 Members</p>
+                <p class="sub">Collaborate & create</p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- 🌟 PRIZES SECTION -->
+<section id="prizes" class="reveal">
+    <h2>Prizes & Recognition</h2>
+    <div class="section-box">
+        <img src="https://i.ibb.co/kJpR6zP/trophy.jpg" alt="Prizes">
+        <ul>
+            <li>🏆 Cash Prizes</li>
+            <li>🎓 Certificates & Medals</li>
+            <li>💼 Internship Opportunities</li>
+            <li>🚀 Spotlight in Tech communities</li>
+        </ul>
+    </div>
+</section>
+
+<!-- 🌟 RULES SECTION -->
+<section id="rules" class="reveal">
+    <h2>Rules & Guidelines</h2>
+    <div class="section-box">
+        <img src="https://i.ibb.co/r0x209z/rules.jpg" alt="Rules">
+        <p>Teams must follow originality rules, time limits, and maintain proper documentation.
+           Plagiarism is strictly prohibited.</p>
+    </div>
+</section>
+
+<!-- 🌟 SUBMISSION SECTION -->
+<section id="submission" class="reveal">
+    <h2>Submission Guidelines</h2>
+    <div class="section-box">
+        <img src="https://i.ibb.co/C0qYHGy/submission.jpg" alt="Submission">
+        <p>Upload your project as a GitHub Repo + Demo Video + PDF Report using the submission portal.</p>
+    </div>
+</section>
+
+<!-- 🌟 CONTACT SECTION -->
+<section id="contact" class="reveal">
+    <h2>Contact Information</h2>
+    <p>Email: hackathon@jwstechnologies.com</p>
+    <p>Phone: +91 63852 66784</p>
+    <p>Department of IT, St. Joseph's College (Autonomous)</p>
+    <p>Tiruchirappalli - 620 002, Tamil Nadu, India</p>
+</section>
+
+<!-- 🌟 FOOTER -->
+<footer>
+    <h3>Quick Links</h3>
+    <a href="#">Registration</a> |
+    <a href="#">Team Login</a> |
+    <a href="#">Rules & Guidelines</a>
+    <p>© 2025 Department of Information Technology, St. Joseph's College</p>
+</footer>
+
+<script>
+function toggleMenu() {
+    document.getElementById("menu-box").classList.toggle("show");
+}
+
+// Fade-in animation on scroll
+const elements = document.querySelectorAll(".reveal");
+
+function revealOnScroll() {
+    elements.forEach((el) => {
+        const top = el.getBoundingClientRect().top;
+        if (top < window.innerHeight - 50) {
+            el.classList.add("active");
+        }
+    });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+document.addEventListener("DOMContentLoaded", () => {
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll("#menu-box a");
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach((link) => link.classList.remove("active"));
+                    const activeLink = document.querySelector(`#menu-box a[href="#${entry.target.id}"]`);
+                    if (activeLink) activeLink.classList.add("active");
+                }
+            });
+        },
+        { threshold: 0.6 } // adjust for sensitivity
+    );
+
+    sections.forEach((section) => observer.observe(section));
+});
+
+function popSection(id) {
+    const section = document.querySelector(`#${id} .section-container`);
+    
+    section.classList.add("active-pop");
+
+    // Remove pop after animation
+    setTimeout(() => {
+        section.classList.remove("active-pop");
+    }, 600);
+}
+</script>
+
+</body>
+</html>
